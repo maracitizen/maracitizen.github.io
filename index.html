@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
 
     <!-- the star of the show - the Vue library! -->
-    <!-- <script src="https://unpkg.com/vue/dist/vue.min.js"></script> -->
     <script src="js/vue.js"></script>
     <script src="js/axios.js"></script>
   </head>
@@ -14,61 +13,77 @@
     <div class="container-fluid">
       <div id="app">
         <div class="row">
-          <div class="col-5 card mh-50" style="height: 600px; overflow-y: auto">
+          <div class="col" style="background-color: cadetblue;">
+            <h5 class="text-center">
+              Ground Thruth 2.0, Maasai Mara Citizen Observatory
+            </h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6 card bigger" style="height: 55vh;">
+            <iframe
+              src="https://school2school.net/stations/"
+              scrolling="no"
+              frameborder="no"
+            ></iframe>
+          </div>
+          <div class="col-6 " style="height: 55vh;">
+            <!--Carousel Wrapper-->
+            <div
+              class="carousel slide"
+              data-interval="5000"
+              data-ride="carousel"
+            >
+              <div class="carousel-inner" style="margin-left: 5px;">
+                <div class="carousel-item active">
+                  <img class="d-block w-100" src="/images/1.jpg" />
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src="/images/2.jpg" />
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src="/images/3.jpg" />
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src="/images/4.jpg" />
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src="/images/5.jpg" />
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src="/images/6.jpg" />
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src="/images/7.jpg" />
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src="/images/8.jpg" />
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src="/images/9.jpeg" />
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="/images/10.jpeg" />
+                  </div>
+              </div>
+            </div>
+            <!--/.Carousel Wrapper-->
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col card " style="height: 40vh; overflow-y: auto">
             <ul class="list-group" v-for="(item,index) in infor">
               <li
                 class="list-group-item"
                 :class="{even: index % 2, odd: !(index % 2)}"
               >
-                <h5>
+                <p>
                   {{ item.no_of_animals }} {{ item.species }} has been spotted
                   at
                   {{ new Date(item.time.substring(0,19)) }}
-                </h5>
+                </p>
               </li>
             </ul>
-          </div>
-
-          <div class="col-7bigger">
-            <iframe
-              
-              src="https://school2school.net/stations/"
-              frameborder="0"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-        <div class="row ">
-          <div class="col card" style="margin-top: 5px;">
-            <!--Carousel Wrapper-->
-            <div
-              id="carouselExampleSlidesOnly"
-              class="carousel slide"
-              data-interval="1000"
-              data-ride="carousel"
-            >
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img
-                    class="d-block w-100"
-                    src="https://mdbootstrap.com/img/Photos/Slides/img%20(35).jpg"
-                  />
-                </div>
-                <div class="carousel-item">
-                  <img
-                    class="d-block w-100"
-                    src="https://mdbootstrap.com/img/Photos/Slides/img%20(33).jpg"
-                  />
-                </div>
-                <div class="carousel-item">
-                  <img
-                    class="d-block w-100"
-                    src="https://mdbootstrap.com/img/Photos/Slides/img%20(31).jpg"
-                  />
-                </div>
-              </div>
-            </div>
-            <!--/.Carousel Wrapper-->
           </div>
         </div>
       </div>
@@ -86,7 +101,7 @@
           this.getdata();
           setInterval(() => {
             this.getdata();
-          }, 60000);
+          }, 6000);
         },
         methods: {
           getdata: function() {
@@ -99,12 +114,12 @@
               })
               .then(response => {
                 this.infor = new Set();
-                console.log(response.data[0].start);
-                console.log(
-                  new Date(
-                    response.data[0].start.substring(0, 19)
-                  ).toISOString()
-                );
+                // console.log(response.data);
+                // console.log(
+                //   new Date(
+                //     response.data[0].start.substring(0, 19)
+                //   ).toISOString()
+                // );
                 response.data.forEach(data => {
                   if (
                     data["wildlife_sighting/no_of_animals"] != undefined &&
@@ -133,9 +148,9 @@
                     this.infor.add(ob);
                   }
                 });
-                console.log(this.infor);
+                // console.log(this.infor);
                 let items = document.querySelectorAll(".list-group-item");
-                console.log(items);
+                // console.log(items);
                 let last = items[items.length - 1];
                 last.scrollIntoView();
               })

@@ -12,20 +12,32 @@
 }
 .bigger {
   width: 250px;
-  height: 540;
+  height: 560px;
   position: relative;
-  border: 1px solid black;
   overflow: hidden;
 }
 iframe {
   position: absolute;
-  width: 968px;
-  height: 2001px;
-  top: -474px;
+  width: 722px;
+  height: 1032px;
+  top: -478px;
+
+  -ms-transform: scale(0.25);
+  -moz-transform: scale(0.5);
+  -o-transform: scale(0.5);
+  -webkit-transform: scale(0.5);
+  transform: scale(0.73);
 }
 
 #container {
   max-width: 960px;
   margin: 0 auto;
   padding: 0px;
+}
+.col-5{
+  height: 560px;
+}
+img{
+  width: 200px;
+  height: 420px;
 }
